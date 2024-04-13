@@ -6,16 +6,17 @@ contract LoyaltyGroupFactory {
   address semaphore;
   uint numberOfGroups;
 
+  event GroupCreated(address newContract, uint groupId);
+
   constructor(address _semaphore) {
     semaphore = _semaphore;
     numberOfGroups = 0;
   }
 
-  function createGroup() external returns(address, uint) {
+  function createGroup() external {
     LoyaltyGroup newGroup = new LoyaltyGroup(semaphore, numberOfGroups);
-    uint groupId = numberOfGroups;
+    emit GroupCreated(address(newGroup), numberOfGroups);
     numberOfGroups++;
-    return (address(newGroup), groupId);
   }
 }
 
