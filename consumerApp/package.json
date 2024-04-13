@@ -11,17 +11,6 @@
     "prettier": "prettier './src' --write",
     "wagmi": "wagmi generate"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./src": [
-      "lint",
-      "prettier"
-    ]
-  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@tanstack/react-query": "^5.29.0",
