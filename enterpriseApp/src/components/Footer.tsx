@@ -2,6 +2,7 @@ import React from 'react'
 import { NetworkStatus } from './NetworkStatus'
 import Link from 'next/link'
 
+
 export function Footer() {
   return (
     <>
@@ -13,7 +14,7 @@ export function Footer() {
         <Link className='button' href='/scanner'>
           QR Code Scanner
         </Link>
-        <Link className='button' href='/manage'>
+        <Link className='button' href='/'>
           Settings
         </Link>
       </footer>
