@@ -39,6 +39,7 @@ describe("LoyaltyGroupFactory", () => {
 })
 
 describe("LoyaltyGroup", () => {
+	let owner: Address
 	let group0: LoyaltyGroup
 	let semaphoreContract: string
 
@@ -50,15 +51,19 @@ describe("LoyaltyGroup", () => {
 		let groups = await ethers.getContractFactory("LoyaltyGroup");
 		let semaphoreAddr = await semaphore.getAddress();
 
-		group0 = await groups.deploy(semaphoreAddr, 0);
+		[owner] = await ethers.getSigners();
+		group0 = await groups.connect(owner).deploy(semaphoreAddr, 0);
 		semaphoreContract = semaphore;
 	})
 
 	describe("# addMember", () => {
 		it("requires owner", async function() {
-			let [notTheOwner] = await ethers.getSigners();
+			let [_, notTheOwner] = await ethers.getSigners();
 			let tx = group0.connect(notTheOwner).addMember(42);
 			await expect(tx).to.be.revertedWith("Only the group owner can add members");
+
+			let tx2 = group0.connect(owner).addMember(44);
+			await expect(tx2).not.to.be.reverted;
 		})
 	})
 })
