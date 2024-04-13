@@ -3,36 +3,37 @@ pragma solidity >=0.8.23;
 import "@semaphore-protocol/contracts/interfaces/ISemaphore.sol";
 
 contract LoyaltyGroupFactory {
-  address semaphore;
-  uint numberOfGroups;
+  ISemaphore semaphore;
+  uint256 numberOfGroups;
 
   event GroupCreated(address newContract, uint groupId);
 
   constructor(address _semaphore) {
-    semaphore = _semaphore;
+    semaphore = ISemaphore(_semaphore);
     numberOfGroups = 0;
   }
 
   function createGroup() external {
-    LoyaltyGroup newGroup = new LoyaltyGroup(semaphore, numberOfGroups);
-    emit GroupCreated(address(newGroup), numberOfGroups);
+    uint256 groupId = semaphore.createGroup();
+    LoyaltyGroup newGroup = new LoyaltyGroup(address(semaphore), groupId);
+    emit GroupCreated(address(newGroup), groupId);
     numberOfGroups++;
   }
 }
 
 contract LoyaltyGroup {
   ISemaphore semaphore;
-  uint groupId;
+  uint256 groupId;
   address owner;
 
-  constructor(address _semaphore, uint _groupId) {
+  constructor(address _semaphore, uint256 _groupId) {
     semaphore = ISemaphore(_semaphore);
     groupId = _groupId;
     owner = msg.sender;
   }
 
   function addMember(uint256 identityCommitment) external {
-    require(msg.sender == owner);
+    require(msg.sender == owner, "Only owner can add members");
     semaphore.addMember(groupId, identityCommitment);
   }
 
