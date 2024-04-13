@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PropsWithChildren } from 'react'
 import { State, WagmiProvider } from 'wagmi'
 import { WALLETCONNECT_CONFIG, WALLETCONNECT_PROJECT_ID } from '@/utils/web3'
+import React from 'react'
 
 interface Props extends PropsWithChildren {
   initialState?: State

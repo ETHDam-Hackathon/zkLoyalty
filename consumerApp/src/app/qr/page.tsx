@@ -1,6 +1,7 @@
 import { CardList } from '@/components/CardList'
 import { SITE_DESCRIPTION, SITE_NAME } from '@/utils/site'
-import { EXAMPLE_ITEMS } from './examples/examples'
+import { EXAMPLE_ITEMS } from '../examples/examples'
+import React from 'react'
 
 export default function Home() {
   return (
