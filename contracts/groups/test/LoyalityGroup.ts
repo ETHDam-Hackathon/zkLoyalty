@@ -3,8 +3,10 @@ import { run } from "hardhat"
 import { LoyaltyGroup } from "../typechain-types"
 import "ethers"
 
-describe("LoyaltyGroup2", () => {
-	let contract: LoyaltyGroup
+const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs");
+
+describe("LoyalityGroup", () => {
+	let groupContract: LoyaltyGroup
 	let semaphoreContract: string
 
 	before(async () => {
@@ -12,10 +14,38 @@ describe("LoyaltyGroup2", () => {
 			logs: false
 		})
 
-		contract = await run("deploy", { logs: false, _semaphore: await semaphore.getAddress() })
+		groupContract = await run("deploy", { logs: false, _semaphore: await semaphore.getAddress() })
 		semaphoreContract = semaphore;
 	})
 
-	describe("# createLoyaltyGroup", () => {
+	describe("# createGroup", () => {
+		it("creates groups with different owners", async function () {
+			let [owner0, owner1] = await ethers.getSigners();
+			
+			const tx0 = groupContract.connect(owner0).createGroup();
+			await expect(tx0)
+				.to.emit(groupContract, "GroupCreated")
+				.withArgs(owner0.address, anyValue);
+
+			const tx1 = groupContract.connect(owner1).createGroup();
+			await expect(tx1)
+				.to.emit(groupContract, "GroupCreated")
+				.withArgs(owner1.address, anyValue);
+		})
 	})
+
+	describe("# addMember", () => {
+		it("lets only the group owner add members", async function () {
+			let [owner, notTheOwner] = await ethers.getSigners();
+
+			await groupContract.connect(owner).createGroup();
+
+			const authorizedTx = groupContract.connect(owner).addMember(42, 0);
+			await expect(authorizedTx).not.to.be.reverted;
+
+			const unauthorizedTx = groupContract.connect(notTheOwner).addMember(73, 0);
+			await expect(unauthorizedTx).to.be.revertedWith("Only the group owner can add members.");
+		})
+	})
+			
 })
