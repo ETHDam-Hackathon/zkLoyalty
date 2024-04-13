@@ -18,7 +18,13 @@ export const fetchGroups = async () => {
       const response = await fetch(`https://json-server-amber-nine.vercel.app/shops?group=${group.groupNumber}`)
       const data = await response.json()
       const shopData = data[0]
-      return { name: shopData.name, points: group.points }
+      return {
+        name: shopData.name,
+        points: group.points,
+        groupNumber: group.groupNumber,
+        redeemPoints: shopData.redeemList,
+        url: shopData.image,
+      }
     })
 
     const resolvedGroups = await Promise.all(promises)
