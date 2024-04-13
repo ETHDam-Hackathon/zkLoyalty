@@ -1,57 +1,20 @@
-pragma solidity >=0.8.23;
+pragma solidity ^0.8.23;
 
 import "@semaphore-protocol/contracts/interfaces/ISemaphore.sol";
 
-contract LoyaltyGroupFactory {
-  address semaphore;
-  uint numberOfGroups;
-
-  event GroupCreated(address newContract, uint groupId);
-
-  constructor(address _semaphore) {
-    semaphore = _semaphore;
-    numberOfGroups = 0;
-  }
-
-  function createGroup() external {
-    LoyaltyGroup newGroup = new LoyaltyGroup(semaphore, numberOfGroups);
-    emit GroupCreated(address(newGroup), numberOfGroups);
-    numberOfGroups++;
-  }
-}
-
 contract LoyaltyGroup {
-  ISemaphore semaphore;
-  uint groupId;
-  address owner;
+    ISemaphore public semaphore;
 
-  constructor(address _semaphore, uint _groupId) {
-    semaphore = ISemaphore(_semaphore);
-    groupId = _groupId;
-    owner = msg.sender;
-  }
+    event GroupCreated(address owner, uint256 groupId);
 
-  function addMember(uint256 identityCommitment) external {
-    require(msg.sender == owner);
-    semaphore.addMember(groupId, identityCommitment);
-  }
+    constructor(ISemaphore _semaphore) {
+        semaphore = _semaphore;
 
-  function sendFeedback(
-    uint256 merkleTreeDepth,
-    uint256 merkleTreeRoot,
-    uint256 nullifier,
-    uint256 feedback,
-    uint256[8] calldata points
-  ) external {
-    ISemaphore.SemaphoreProof memory proof = ISemaphore.SemaphoreProof(
-      merkleTreeDepth,
-      merkleTreeRoot,
-      nullifier,
-      feedback,
-      groupId,
-      points
-    );
+        uint256 groupId = semaphore.createGroup(address(this));
+        emit GroupCreated(msg.sender, groupId);
+    }
 
-    semaphore.validateProof(groupId, proof);
-  }
+    function addMember(uint256 identityCommitment, uint256 groupId) external {
+        semaphore.addMember(groupId, identityCommitment);
+    }
 }
