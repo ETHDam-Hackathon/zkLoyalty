@@ -3,7 +3,6 @@ import { Chain, hardhat } from 'viem/chains'
 
 let chains = [mainnet, sapphireTestnet, sepolia] as [Chain, ...Chain[]]
 
-
 export const ETH_CHAINS = chains
 
 export const NETWORK_COLORS = {
