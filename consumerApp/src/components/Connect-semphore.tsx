@@ -22,7 +22,7 @@ export function Connect_s() {
 
   return (
     <>
-      {commitment ? (
+      {!commitment ? (
         <button className='btn btn-primary' onClick={() => signMessage({ message: 'I am a consumer for zkLoyalty.' })}>
           Connect Semaphore
         </button>
