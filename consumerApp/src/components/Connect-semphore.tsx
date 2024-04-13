@@ -27,7 +27,11 @@ export function Connect_s() {
           Connect Semaphore
         </button>
       ) : (
-        <></>
+        <>
+          <button className='btn btn-primary' disabled={commitment ? true : false}>
+            Connected
+          </button>
+        </>
       )}
     </>
   )
