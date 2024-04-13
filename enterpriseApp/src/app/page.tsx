@@ -7,24 +7,22 @@ import { useAccount } from 'wagmi'
 export default function Home() {
   const { signMessage, data: signature } = useSignMessage()
   const [commitment, setCommitment] = useState<bigint>()
-  const comm = localStorage.getItem('commitment')
+
   const { isConnected } = useAccount()
 
   function createIdentity() {
-    if (comm !== null) {
-      setCommitment(BigInt(comm))
-    } else {
-      const identity = new Identity(signature)
-      setCommitment(identity.commitment)
-      localStorage.setItem('commitment', identity.commitment.toString())
-    }
+    const identity = new Identity(signature)
+    setCommitment(identity.commitment)
+    localStorage.setItem('commitment', identity.commitment.toString())
   }
 
   useEffect(() => {
-    if (comm !== null) {
-      setCommitment(BigInt(comm))
+    if (typeof window !== 'undefined') {
+      if (localStorage?.getItem('commitment') !== null) {
+        setCommitment(BigInt(localStorage?.getItem('commitment') as string | ''))
+      }
     }
-  }, [comm])
+  }, [])
 
   useEffect(() => {
     if (signature) {

@@ -2,7 +2,6 @@ import React from 'react'
 import { NetworkStatus } from './NetworkStatus'
 import Link from 'next/link'
 
-
 export function Footer() {
   return (
     <>

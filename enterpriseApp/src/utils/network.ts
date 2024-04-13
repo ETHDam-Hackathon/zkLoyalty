@@ -1,7 +1,8 @@
-import { mainnet, sepolia, sapphireTestnet, optimismSepolia } from 'viem/chains'
-import { Chain } from 'viem/chains'
+import { mainnet, sapphireTestnet, sepolia } from 'viem/chains'
+import { Chain, hardhat } from 'viem/chains'
 
-let chains = [mainnet, sepolia, sapphireTestnet, optimismSepolia] as [Chain, ...Chain[]]
+let chains = [mainnet, sapphireTestnet, sepolia] as [Chain, ...Chain[]]
+
 
 export const ETH_CHAINS = chains
 
@@ -42,7 +43,7 @@ export const NETWORK_COLORS = {
 
 export function GetNetworkColor(chain?: string, type: 'color' | 'bgVariant' = 'color') {
   chain = chain?.toLocaleLowerCase()
-  if (chain === 'sapphireTestnet' || chain === 'sepolia' || chain === 'optimismSepolia') return NETWORK_COLORS.ethereum[type]
+  if (chain === 'sapphireTestnet' || chain === 'sepolia' || chain === 'homestead') return NETWORK_COLORS.ethereum[type]
   if (chain?.includes('arbitrum')) return NETWORK_COLORS.arbitrum[type]
   if (chain?.includes('base')) return NETWORK_COLORS.base[type]
   if (chain?.includes('linea')) return NETWORK_COLORS.linea[type]
