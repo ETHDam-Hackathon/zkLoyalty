@@ -33,7 +33,7 @@ contract LoyaltyGroup {
   }
 
   function addMember(uint256 identityCommitment) external {
-    require(msg.sender == owner, "Only owner can add members");
+    require(msg.sender == owner, "Only the group owner can add members");
     semaphore.addMember(groupId, identityCommitment);
   }
 
