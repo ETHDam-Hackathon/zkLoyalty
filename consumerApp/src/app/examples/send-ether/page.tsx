@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { parseEther, formatEther, isAddress } from 'viem'
 import { useToast } from '@/context/Toaster'
 import Ethereum from '@/assets/icons/ethereum.png'
+import React from 'react'
 
 type Address = `0x${string}` | undefined
 
