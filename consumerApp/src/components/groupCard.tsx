@@ -1,3 +1,5 @@
+import React from 'react'
+
 export type GroupCardType = {
   name: string
   points: number

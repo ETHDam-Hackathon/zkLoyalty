@@ -1,0 +1,64 @@
+{
+  "shops": [
+    {
+      "group": 1,
+      "name": "Thistle & Thorn Boutique",
+      "image": "https://example.com/thistle.jpg",
+      "description": "A boutique offering a unique selection of clothing and accessories.",
+      "points": 10,
+      "redeemList": {
+        "20": "5%",
+        "50": "10%",
+        "100": "15%"
+      }
+    },
+    {
+      "group": 2,
+      "name": "Brew & Bean Corner",
+      "image": "https://example.com/brew.jpg",
+      "description": "A cozy corner serving freshly brewed coffee and delicious pastries.",
+      "points": 5,
+      "redeemList": {
+        "30": "5%",
+        "70": "10%",
+        "120": "15%"
+      }
+    },
+    {
+      "group": 3,
+      "name": "The Nook Bookery",
+      "image": "https://example.com/nook.jpg",
+      "description": "A book lover's paradise with a wide selection of books and cozy reading nooks.",
+      "points": 8,
+      "redeemList": {
+        "25": "5%",
+        "60": "10%",
+        "110": "15%"
+      }
+    },
+    {
+      "group": 4,
+      "name": "Sage & Savory Pantry",
+      "image": "https://example.com/sage.jpg",
+      "description": "A pantry offering gourmet ingredients and culinary essentials.",
+      "points": 12,
+      "redeemList": {
+        "15": "5%",
+        "40": "10%",
+        "80": "15%"
+      }
+    },
+    {
+      "group": 5,
+      "name": "Cobblestone & Canvas",
+      "image": "https://example.com/cobblestone.jpg",
+      "description": "An art studio and gallery featuring works by local artists.",
+      "points": 15,
+      "redeemList": {
+        "10": "5%",
+        "30": "10%",
+        "70": "15%"
+      }
+    }
+  ]
+}
