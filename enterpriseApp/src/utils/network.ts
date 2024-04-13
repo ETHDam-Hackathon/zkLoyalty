@@ -1,7 +1,47 @@
-import { mainnet, sapphireTestnet, sepolia } from 'viem/chains'
+import { defineChain } from 'viem'
+import { mainnet, sapphireTestnet } from 'viem/chains'
 import { Chain, hardhat } from 'viem/chains'
 
-let chains = [mainnet, sapphireTestnet, sepolia] as [Chain, ...Chain[]]
+export const fheZama = defineChain({
+  id: 8009,
+  name: 'Zama',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Zama',
+    symbol: 'ZAMA',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://devnet.zama.ai/'],
+      webSocket: ['wss://devnet.zama.ai/'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Explorer', url: 'https://main.explorer.zama.ai' },
+  },
+})
+
+export const sepolia = defineChain({
+  id: 11155111,
+  name: 'Sepolia',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ethereum',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://lb.drpc.org/ogrpc?network=sepolia&dkey=ArsgfXt5rUhbuRjsYj_g6qjueRCb8ywR7q6mpjfDdkV6'],
+      webSocket: ['wss://lb.drpc.org/ogws?network=sepolia&dkey=ArsgfXt5rUhbuRjsYj_g6qjueRCb8ywR7q6mpjfDdkV6'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Explorer', url: 'https://sepolia.etherscan.io' },
+  },
+})
+
+
+let chains = [mainnet, sapphireTestnet, sepolia, fheZama] as [Chain, ...Chain[]];
 
 
 export const ETH_CHAINS = chains
