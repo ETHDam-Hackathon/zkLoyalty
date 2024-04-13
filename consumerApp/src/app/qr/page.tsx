@@ -5,7 +5,6 @@ import { useQRCode } from 'next-qrcode'
 export default function Qr() {
   const { Canvas } = useQRCode()
   const [commitment, setCommitment] = useState<string>()
-  console.log(commitment)
   useEffect(() => {
     const commitment = localStorage.getItem('commitment')
     if (!commitment) {
