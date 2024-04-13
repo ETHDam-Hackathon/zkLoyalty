@@ -27,7 +27,7 @@
     "viem": "^2.9.15",
     "wagmi": "^2.5.19",
     "next-qrcode": "^2.5.1",
-    "semaphore-protocol/identity": "^4.0.0-beta.7"
+    "@semaphore-protocol/identity": "^4.0.0-beta.7"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",

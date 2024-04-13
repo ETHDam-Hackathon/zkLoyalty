@@ -10,7 +10,7 @@ export function Footer() {
       </div>
 
       <footer className='sticky top-[100vh] footer flex justify-between items-center bg-neutral text-neutral-content p-4'>
-        <Link className='button' href='/profile'>
+        <Link className='button' href='/'>
           Profile
         </Link>
         <Link className='button' href='/qr'>

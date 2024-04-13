@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { Identity } from '@semaphore-protocol/identity'
-import { useSignMessage, useAccount } from 'wagmi'
+import { useSignMessage } from 'wagmi'
 
 export function Connect_s() {
   const { signMessage, data: signature } = useSignMessage()
