@@ -1,7 +1,10 @@
 'use client'
 
-import Scanner from 'qrcode-scanner-react'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
+
+// Dynamically import qrcode-scanner-react
+const Scanner = dynamic(() => import('qrcode-scanner-react'), { ssr: false })
 
 export default function ScannerView() {
   const [scanning, setScanning] = useState(true)
