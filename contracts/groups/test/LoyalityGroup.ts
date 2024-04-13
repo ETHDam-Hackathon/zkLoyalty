@@ -46,6 +46,30 @@ describe("LoyalityGroup", () => {
 			const unauthorizedTx = groupContract.connect(notTheOwner).addMember(73, 0);
 			await expect(unauthorizedTx).to.be.revertedWith("Only the group owner can add members.");
 		})
+
+		it("warns about nonexisting groups and duplicate users", async function () {
+			await groupContract.createGroup();
+			await groupContract.createGroup();
+
+			const tx = groupContract.addMember(1, 10);
+			await expect(tx).to.be.revertedWith("Group does not exist.");
+		})
+
+		it("warns about duplicate users in the same group", async function () {
+			let [owner0, owner1] = await ethers.getSigners();
+
+			await groupContract.connect(owner0).createGroup();
+			await groupContract.connect(owner1).createGroup();
+
+			const tx1 = groupContract.connect(owner0).addMember(111, 0);
+			await expect(tx1).not.to.be.reverted;
+
+			const tx2 = groupContract.connect(owner0).addMember(111, 0);
+			await expect(tx2).to.be.reverted;
+
+			const tx3 = groupContract.connect(owner1).addMember(111, 1);
+			await expect(tx3).not.to.be.reverted;
+		})
+
 	})
-			
 })

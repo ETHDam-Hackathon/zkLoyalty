@@ -19,7 +19,9 @@ contract LoyaltyGroup {
     }
 
     function addMember(uint256 identityCommitment, uint256 groupId) external {
+	require(groupOwners[groupId] != address(0), "Group does not exist.");
 	require(groupOwners[groupId] == msg.sender, "Only the group owner can add members.");
+	
         semaphore.addMember(groupId, identityCommitment);
     }
 }
