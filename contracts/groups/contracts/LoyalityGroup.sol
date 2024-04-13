@@ -7,9 +7,11 @@ contract LoyaltyGroup {
 
     event GroupCreated(address owner, uint256 groupId);
 
-    constructor(ISemaphore _semaphore) {
-        semaphore = _semaphore;
+    constructor(address _semaphore) {
+        semaphore = ISemaphore(_semaphore);
+    }
 
+    function createGroup() external {
         uint256 groupId = semaphore.createGroup(address(this));
         emit GroupCreated(msg.sender, groupId);
     }
