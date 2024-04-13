@@ -11,17 +11,6 @@
     "prettier": "prettier './src' --write",
     "wagmi": "wagmi generate"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./src": [
-      "lint",
-      "prettier"
-    ]
-  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@semaphore-protocol/identity": "^4.0.0-beta.7",
@@ -30,7 +19,7 @@
     "@web3modal/wagmi": "^4.1.6",
     "dayjs": "^1.11.10",
     "iron-session": "^6.3.1",
-    "next": "^14.1.4",
+    "next": "^14.2.1",
     "qrcode-scanner-react": "^0.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
