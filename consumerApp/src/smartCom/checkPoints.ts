@@ -13,10 +13,17 @@ export function app() {
     functionName: 'checkPoints',
   })
 
+
+  const { data } = useReadContract({
+    address: '0x7e9D541EbcfF638fE973928Bf03Dc75A428903fb',
+    abi: zamaABI,
+    eventName: 'checkPoints',
+    poll: true,
+    pollingInterval: 10_000,
+  })
+
   console.log('result: ', result)
 }
-
-const provider = new JsonRpcProvider('https://devnet.zama.ai/')
 
 // Function to create or retrieve an FHE instance
 const getInstance = async () => {

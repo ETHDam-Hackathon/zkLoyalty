@@ -10,7 +10,9 @@ export function Connect_s() {
   useEffect(() => {
     if (signature) {
       const { privateKey, publicKey, commitment } = new Identity(signature)
+      const identity = new Identity(signature)
       localStorage.setItem('commitment', commitment.toString())
+      localStorage.setItem('identity', JSON.stringify(identity))
     }
     const commitment = localStorage.getItem('commitment')
     if (!commitment) {
