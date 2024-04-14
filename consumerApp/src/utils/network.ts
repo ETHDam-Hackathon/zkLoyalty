@@ -1,5 +1,25 @@
+import { defineChain } from 'viem'
 import { mainnet, sapphireTestnet, sepolia } from 'viem/chains'
 import { Chain, hardhat } from 'viem/chains'
+
+export const fheZama = defineChain({
+  id: 8009,
+  name: 'Zama',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Zama',
+    symbol: 'ZAMA',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://devnet.zama.ai/'],
+      webSocket: ['wss://devnet.zama.ai/'],
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Explorer', url: 'https://main.explorer.zama.ai' },
+  },
+})
 
 let chains = [mainnet, sapphireTestnet, sepolia] as [Chain, ...Chain[]]
 
