@@ -42,7 +42,7 @@ export default function Home() {
   }, [signature])
 
   useWatchContractEvent({
-    address: '0xD85CD1D0B5A892973c9DEB7522CE691638157DDE',
+    address: '0x5f588FF374D788470af75A55253FD6488Ea9c90e',
     abi: semaAbi,
     eventName: 'GroupCreated',
     onLogs(logs: any) {
@@ -81,7 +81,7 @@ export default function Home() {
               onClick={() =>
                 writeContract({
                   abi: semaAbi,
-                  address: '0xD85CD1D0B5A892973c9DEB7522CE691638157DDE',
+                  address: '0x5f588FF374D788470af75A55253FD6488Ea9c90e',
                   functionName: 'createGroup',
                   chainId: 11155111,
                 })

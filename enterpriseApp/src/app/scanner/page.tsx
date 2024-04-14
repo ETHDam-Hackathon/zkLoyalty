@@ -35,32 +35,18 @@ export default function ScannerView() {
       )}
       <p>Result: {result}</p>
       <br />
-      <p>bigint: {BigInt(result.toString())}</p>
+      {/* <p>bigint: {BigInt(result.toString())}</p>
       <br />
-      <p>id: {localStorage.getItem('groupId')}</p>
+      <p>id: {localStorage.getItem('groupId')}</p> */}
 
       <button
         className='btn btn-primary'
         onClick={() =>
           writeContract({
             abi: semaAbi,
-            address: '0xD85CD1D0B5A892973c9DEB7522CE691638157DDE',
+            address: '0x5f588FF374D788470af75A55253FD6488Ea9c90e',
             functionName: 'addMember',
-            args: [result, localStorage.getItem('groupId')],
-            chainId: 11155111,
-          })
-        }>
-        Add User
-      </button>
-
-      <button
-        className='btn btn-primary'
-        onClick={() =>
-          writeContract({
-            abi: semaAbi,
-            address: '0xD85CD1D0B5A892973c9DEB7522CE691638157DDE',
-            functionName: 'proveMembership',
-            args: [result, localStorage.getItem('groupId')],
+            args: [result, 29],
             chainId: 11155111,
           })
         }>
